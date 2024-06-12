@@ -1,0 +1,5 @@
+2024-06-03T16:31:59.2649805+03:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2024-06-03T16:31:59.2744279+03:00  [INF] Hosting environment: "Development" (c3307c92)
+2024-06-03T16:31:59.2756634+03:00  [INF] Content root path: "C:\Users\OA\Desktop\Projeler\TraversalCoreProje\TraversalCoreProje" (b5d60022)
+2024-06-03T16:32:01.0792418+03:00 80000018-0003-fb00-b63f-84710c7967bb [INF] 3.06.2024 00:00:00default home sayfası çagırıdı.. (748e9f95)
+2024-06-03T16:32:48.9837857+03:00 80000068-0000-ff00-b63f-84710c7967bb [INF] 3.06.2024 00:00:00default home sayfası çagırıdı.. (748e9f95)

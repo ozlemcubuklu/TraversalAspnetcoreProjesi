@@ -1,0 +1,35 @@
+﻿
+@model MailRequest
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayaut.cshtml";
+}
+
+
+<h4> Mail Gönder</h4>
+<form method="post">
+
+
+    <div class="form-group">
+        @Html.Label("Gönderilecek Mail Adresi")
+        <input type="text" asp-for="ReceiverMail" class="form-control">
+       
+    </div>
+    <div class="form-group">
+        @Html.Label("Konu")
+        <input type="text" asp-for="Subject" class="form-control">
+
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.Label("Açıklama")
+        <textarea asp-for="Body" cols="30" rows="5" class="form-control">
+           </textarea>
+
+    </div>
+
+    <input type="submit" class="btn btn-outline-primary" value="Mail Gönder">
+</form>
+

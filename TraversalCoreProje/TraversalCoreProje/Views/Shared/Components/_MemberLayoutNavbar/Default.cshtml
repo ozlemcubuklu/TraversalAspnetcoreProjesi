@@ -1,0 +1,33 @@
+﻿@model AppUser
+<ul class="nav navbar-nav float-right">
+   @*  <li class="dropdown dropdown-notification nav-item">
+     
+        <div class="dropdown-menu dropdown-menu-right">
+            <div class="arrow_box_right">
+                <a class="dropdown-item" href="/member/reservation/MyCurrentReservation">
+                    <i class="ft-bookmark"> </i> Aktif Rezervasyonlarım
+                </a>
+                <a class="dropdown-item" href="/member/reservation/MyOldReservation"><i class="ft-check-square"></i>Geçmiş Rezervasyonlarım</a>
+                <a class="dropdown-item" href="/member/reservation/MyApprovalReservation"><i class="ft-check-square"></i>Onay Bekleyen Rezervasyonlarım</a>
+            </div>
+            </div>
+      
+    </li> *@
+    <li class="dropdown dropdown-user nav-item">
+        <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
+            <span class="avatar avatar-online"><img src="@Model.ImageUrl" alt="avatar"><i></i></span></a>
+        <div class="dropdown-menu dropdown-menu-right">
+            <div class="arrow_box_right">
+              
+                <a class="dropdown-item" href="#"><span class="avatar avatar-online"><img src="@Model.ImageUrl" alt="avatar"><span class="user-name text-bold-700 ml-1">@Model.Name</span></span></a>
+                 <div class="dropdown-divider"></div><a class="dropdown-item" href="/member/profile/index"><i class="ft-user"></i> Profil</a>
+                <hr /><a class="dropdown-item" href="/member/reservation/MyCurrentReservation">
+                    <i class="ft-bookmark"> </i> Aktif Rezervasyonlarım
+                </a> 
+                <a class="dropdown-item" href="/member/reservation/MyOldReservation"><i class="ft-check-square"></i>Geçmiş Rezervasyonlarım</a>
+                <a class="dropdown-item" href="/member/reservation/MyApprovalReservation"><i class="ft-check-square"></i>Onay Bekleyen Rezervasyonlarım</a>
+                <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i class="ft-power"></i> Çıkış yap</a>
+            </div>
+        </div>
+    </li> 
+</ul>

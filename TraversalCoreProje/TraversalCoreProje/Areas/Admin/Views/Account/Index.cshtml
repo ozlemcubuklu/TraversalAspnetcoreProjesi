@@ -1,0 +1,31 @@
+﻿@model AccountViewModel
+@{
+    ViewData["Title"] = "AddGuide";
+    Layout = "~/Views/Shared/_AdminLayaut.cshtml";
+}
+<h4> UOW Account İşlemleri</h4>
+<form method="post">
+
+
+    <div class="form-group">
+        @Html.Label("Gönderici Id")
+        <input type="text" asp-for="SenderId" class="form-control">
+      
+    </div>
+
+
+    <div class="form-group">
+        @Html.Label("Alıcı Id")
+        <input type="text" asp-for="ReceiverId" class="form-control">
+
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Miktar")
+        <input type="text" asp-for="Amount" class="form-control">
+
+    </div>
+
+    <input type="submit" class="btn btn-outline-primary" value="Gönder">
+</form>
+

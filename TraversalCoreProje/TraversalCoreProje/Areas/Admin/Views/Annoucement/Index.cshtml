@@ -1,0 +1,38 @@
+﻿
+@model List<AnnoucementListDTO>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayaut.cshtml";
+    int count = 0;
+}
+
+
+<h3>Duyurular</h3>
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Başlık</th>
+        <th>İçerik</th>
+      
+        <th>Sil</th>
+        <th>Detaylar</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <td>@count</td>
+            <td>@item.Title</td>
+            <td>@item.Content</td>
+
+            <td> <a href="/admin/annoucement/Deleteannoucement/@item.Id" class="btn btn-outline-danger">Sil</a></td>
+            <td> <a href="/admin/annoucement/UpdateAnnoucement/@item.Id" class="btn btn-outline-dark">Detaylar</a></td>
+        </tr>
+
+    }
+
+</table>
+<a href="/admin/annoucement/addAnnoucement/" class="btn btn-outline-primary">Yeni Duyuru</a>
+

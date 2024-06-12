@@ -1,0 +1,39 @@
+﻿
+@model List<GetAllGuideQueryResult>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayaut.cshtml";
+}
+
+<style>
+    img {
+        border-radius: 50%;
+    }
+</style>
+<h3>Rehber Listesi MediatR</h3>
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Ad Soyad</th>
+        <th>Açıklama</th>
+        <th>Güncelle</th>
+        <th>Sil</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+           <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+           
+            <td> <a href="/admin/guideMediatR/getguide/@item.Id" class="btn btn-outline-success">Güncelle</a></td>
+            <td> <a href="/admin/guideMediatR/Deleteguide/@item.Id" class="btn btn-outline-danger">Sil</a></td>
+
+        </tr>
+
+    }
+
+</table>
+<a href="/admin/guideMediatR/addguide/" class="btn btn-outline-primary">Yeni Rehber Kaydı</a>

@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "UserList";
+    Layout = "~/Views/Shared/_AdminLayaut.cshtml";
+}
+
+
+
+<h3>Kullanıcı Listesi</h3>
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Kullanıcı Adı:</th>
+        <th>Role Ara</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>#</td>
+            <td>@item.Name</td>
+
+            <td> <a href="/admin/role/assignrole/@item.Id" class="btn btn-outline-warning">Role Ata</a></td>
+        </tr>
+
+    }
+
+</table>
+<a href="/admin/role/addrole/" class="btn btn-outline-primary">Yeni Role Kaydı</a>

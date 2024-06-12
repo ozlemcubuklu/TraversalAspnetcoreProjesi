@@ -1,0 +1,261 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayaut.cshtml";
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+<h3>Şehir Ülke İşlemleri</h3>
+
+<button id="btngetlist" type="button" class="btn btn-outline-info">Şehir Listesi</button>
+<button id="btnsehirgetir" type="button" class="btn btn-outline-primary">Şehir Getir</button>
+<button id="btnsehirekle" type="button" class="btn btn-outline-success">Şehir Ekle</button>
+<button id="btnsehirguncelle" type="button" class="btn btn-outline-warning">Şehir Güncelle</button>
+<button id="btnsehirsil" type="button" class="btn btn-outline-danger">Şehir Sil</button>
+<br />
+<br />
+<br />
+
+
+
+
+<div id="citylist"></div>
+<br />
+<br />
+<h3>Şehir Getir</h3>
+<div class="form-group">
+    <label for="txtSehirGetirId">Şehir ID:</label>
+    <input type="text" id="txtSehirGetirId" class="form-control">
+</div>
+<div id="sehirgetir" class="mt-3"></div>
+<br>
+<br />
+
+
+<h3>Şehir Ekle</h3>
+<div class="form-group">
+    <label for="txtSehirAdi">Şehir Adı:</label>
+    <input type="text" id="txtSehirAdi" class="form-control">
+</div>
+<div class="form-group">
+    <label for="txtGunGece">Gün-Gece:</label>
+    <input type="text" id="txtGunGece" class="form-control">
+</div>
+<div class="form-group">
+    <label for="txtFiyat">Fiyat:</label>
+    <input type="text" id="txtFiyat" class="form-control">
+</div>
+<div class="form-group">
+    <label for="txtCapasity">Kapasite:</label>
+    <input type="text" id="txtCapasity" class="form-control">
+</div>
+<br>
+<br />
+
+
+<br>
+<br />
+
+
+<h3>Şehir Sil</h3>
+<div class="form-group">
+    <label for="txtSehirAdi">Silinecek Şehir Id:</label>
+    <input type="text" id="txtsehiridsil" class="form-control">
+</div>
+
+
+
+
+
+<h3>Şehir Güncelle</h3>
+<div class="form-group">
+    <div class="form-group">
+        <label for="txtsehiridguncelle">Şehir ID:</label>
+        <input type="text" id="txtsehiridguncelle" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="txtSehirAdiGuncelle">Şehir Adı:</label>
+        <input type="text" id="txtSehirAdiGuncelle" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="txtGunGeceGuncelle">Gün-Gece:</label>
+        <input type="text" id="txtGunGeceGuncelle" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="txtFiyatGuncelle">Fiyat:</label>
+        <input type="text" id="txtFiyatGuncelle" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="txtCapasityGuncelle">Kapasite:</label>
+        <input type="text" id="txtCapasityGuncelle" class="form-control">
+    </div>
+<br>
+<br />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+
+    $(document).ready(function () {
+        $("#btngetlist").click(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Admin/City/CityList1",
+                success: function (data) {
+                    let w = JSON.parse(data);
+                    console.log(w);
+                    let tablehtml = "<table class='table table-bordered'><tr><th>Şehir Adı</th><th>Şehir Gün-Gecce</th><th>Fiyat</th></tr>";
+                    $.each(w, (index, value) => {
+                        tablehtml += `<tr><td>${value.City}</td><td>${value.DayNight}</td><td>${value.Price}</td></tr>`;
+                    });
+                    tablehtml += "</table>";
+                    $("#citylist").html(tablehtml);
+                },
+                error: function () {
+                    alert("Hata oluştu. İstek başarısız.");
+                }
+            });
+        });
+        $("#btnsehirgetir").click(function () {
+            let id = $("#txtSehirGetirId").val(); // id'yi alırken input alanının doğru id'sini kullanmalısın
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "GET",
+                data: { DestinationId: id },
+                url: "/Admin/City/GetById/",
+                success: function (fun2) {
+                    let result = JSON.parse(fun2);
+                    console.log(result);
+                    let htmlstr = `<table class="table table-bordered"><tr>
+                                        <th>Şehir</th>
+                                        <th>Gün-Gece</th>
+                                        <th>Fiyat</th>
+                                </tr>
+                                <tr>
+                                    <td>${result.City}</td>
+                                    <td>${result.DayNight}</td>
+                                    <td>${result.Price}</td>
+                                 </tr>
+                              </table>`;
+                    $("#sehirgetir").html(htmlstr);
+                },
+                error: function (xhr, status, error) {
+                    console.error("Hata: " + error);
+                }
+
+            });
+
+
+        });
+
+
+
+
+        $("#btnsehirekle").click(function () {
+            let city = {
+               
+                City: $("#txtSehirAdi").val(),
+                DayNight: $("#txtGunGece").val(),
+                Price: parseFloat($("#txtFiyat").val()), // Fiyatı float olarak al
+                Capasity: parseInt($("#txtCapasity").val()) // Kapasiteyi integer olarak al
+            };
+
+            console.log(city); // Bu satırı ekleyerek, city objesinin doğru şekilde oluşturulup oluşturulmadığını kontrol edelim.
+
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "POST",
+                url: "/Admin/City/AddCityDestination/",
+                data: JSON.stringify(city), // JSON.stringify kullanarak veriyi JSON formatına çeviriyoruz
+                success: function (response) {
+                    console.log(response);
+                    alert("Şehir-Rota başarılı bir şekilde kaydedildi.");
+                },
+                error: function (xhr, status, error) {
+                    console.error("Hata: " + error);
+                }
+            });
+        });
+
+
+
+
+        $("#btnsehirsil").click(function () {
+            let id = $("#txtsehiridsil").val();
+
+            console.log(id); // ID'nin doğru şekilde alınıp alınmadığını kontrol edin
+
+            $.ajax({
+                url: "/Admin/City/DeleteCityDestination/",
+                type: "POST",
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify({ id: id }), // Veriyi JSON formatında gönderiyoruz
+                success: function (response) {
+                    console.log(response);
+                    alert("Şehir silindi.");
+                },
+                error: function (xhr, status, error) {
+                    console.error("Hata: " + error);
+                }
+            });
+        });
+
+
+
+
+
+
+
+
+            $("#btnsehirguncelle").click(function () {
+                let city = {
+                    Id: $("#txtsehiridguncelle").val(),
+                    City: $("#txtSehirAdiGuncelle").val(),
+                    DayNight: $("#txtGunGeceGuncelle").val(),
+                    Price: parseFloat($("#txtFiyatGuncelle").val()), // Fiyatı float olarak al
+                    Capasity: parseInt($("#txtCapasityGuncelle").val()) // Kapasiteyi integer olarak al
+                };
+
+                console.log(city); // city objesinin doğru şekilde oluşturulup oluşturulmadığını kontrol edin
+
+                $.ajax({
+                    contentType: "application/json",
+                    dataType: "json",
+                    type: "POST",
+                    url: "/Admin/City/UpdateCity/",
+                    data: JSON.stringify(city), // JSON.stringify kullanarak veriyi JSON formatına çeviriyoruz
+                    success: function (response) {
+                        console.log(response);
+                        alert("Şehir-Rota başarılı bir şekilde güncellendi.");
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Hata: " + error);
+                    }
+                });
+            });
+
+
+
+
+    });
+</script>

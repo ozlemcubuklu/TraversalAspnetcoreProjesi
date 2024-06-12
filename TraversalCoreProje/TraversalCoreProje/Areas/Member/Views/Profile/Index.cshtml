@@ -1,0 +1,43 @@
+﻿@model UserEditViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_MemberLayout.cshtml";
+}
+
+
+
+
+
+
+                    <div class="table-responsive">
+
+                        <form method="post" enctype="multipart/form-data">
+                            @Html.Label("Adınız")
+                            <input type="text" asp-for="Name" class="form-control" />
+        <br />
+                            @Html.Label("Soyadınız")
+                            <input type="text" asp-for="SurName" class="form-control" />
+        <br />
+                            @Html.Label("Email")
+                            <input type="text" asp-for="Email" class="form-control" />
+        <br />
+                            @Html.Label("Parola")
+                            <input type="text" asp-for="Password" class="form-control" />
+        <br />
+                            @Html.Label("Parola Tekrar")
+                            <input type="text" asp-for="ConfirmPassword" class="form-control" />
+        <br />
+                            @Html.Label("Telefon Numaranız")
+                            <input type="text" asp-for="PhoneNumber" class="form-control" />
+        <br />
+                            @Html.Label("Resim Seçiniz.")
+                            <input type="file" asp-for="Image" class="form-control" />
+        <br />
+                            <button class="btn btn-primary">Bilgileri Güncelle</button>
+                        </form>
+
+
+
+					</div>
+				
+				

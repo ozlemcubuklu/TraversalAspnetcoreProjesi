@@ -1,0 +1,20 @@
+﻿using AspNetCoreWebApi.Models;
+using Microsoft.AspNetCore.SignalR;
+using System.Threading.Tasks;
+
+namespace AspNetCoreWebApi.Hubs
+{
+    public class VisitorHub:Hub
+    {
+        private VisitorService _visitorService;
+
+        public VisitorHub(VisitorService visitorService)
+        {
+            _visitorService = visitorService;
+        }
+        public async Task GetVisitorList()
+        {
+            await Clients.All.SendAsync("CallVisitList", _visitorService.GetVisitorChartList());
+        }
+    }
+}

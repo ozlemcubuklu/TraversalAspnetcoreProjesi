@@ -1,0 +1,18 @@
+﻿@model Comment
+@{
+    ViewData["Title"] = "UpdateComment";
+    Layout = "~/Views/Shared/_MemberLayout.cshtml";
+}
+
+<form method="post">
+
+    @Html.HiddenFor(x=>x.Id)
+    <div class="form-group">
+        @Html.Label("İçerik")
+        <input type="text" asp-for="Content" class="form-control">
+    </div>
+
+
+    <button class="btn btn-outline-Success" onclick="alert('Yorumunuz incelendikten sonra yayınlanacaktır. :)')">Düzenle</button>
+</form>
+

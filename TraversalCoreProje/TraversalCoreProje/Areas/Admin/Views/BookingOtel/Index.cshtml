@@ -1,0 +1,38 @@
+﻿@model IEnumerable<BookingOtelSearchViewModel.Result>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayaut.cshtml";
+    int count = 0;
+    double score;
+}
+
+
+<h3>Api Ziyaretçi Listesi</h3>
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Otel Adı</th>
+        <th>Otel Puanı</th>
+        <th>Otel Değerlendirmesi</th>
+        <th>Detaylar</th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <th>@count</th>
+            <td>@item.name</td>
+            @{
+                score = double.Parse(@item.reviewScore.ToString()) / 10;
+            }
+            <td>@score</td>
+            <td>@item.reviewScoreWord</td>
+            <td><a href="#" class="btn btn-outline-dark">Detaylar</a></td>
+        </tr>
+
+    }
+
+</table>
